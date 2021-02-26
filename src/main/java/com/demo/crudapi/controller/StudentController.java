@@ -53,7 +53,7 @@ public class StudentController {
 	    }
 	  }
 	  
-	  @PutMapping("/studets/{id}")
+	  @PutMapping("/students/{id}")
 	  public ResponseEntity<Student> updateStudent(@PathVariable("id") Integer id, @RequestBody Student std) {
 	    Optional<Student> studentData = studentRepo.findById(id);
 
