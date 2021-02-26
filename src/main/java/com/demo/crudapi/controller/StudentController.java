@@ -19,7 +19,7 @@ public class StudentController {
 	Repo studentRepo;
 	
 	@GetMapping("/students")
-	  public ResponseEntity<List<Student>> getAllTutorials(@RequestParam(required = false) String title) {
+	  public ResponseEntity<List<Student>> getAllStudents(@RequestParam(required = false) String title) {
 	    try {
 	      List<Student> students = new ArrayList<Student>();
 	      studentRepo.findAll().forEach(students::add);
@@ -33,7 +33,7 @@ public class StudentController {
 	  }
 	
 	  @GetMapping("/students/{id}")
-	  public ResponseEntity<Student> getTutorialById(@PathVariable("id") Integer id) {
+	  public ResponseEntity<Student> getStudentById(@PathVariable("id") Integer id) {
 	    Optional<Student> studentData = studentRepo.findById(id);
 
 	    if (studentData.isPresent()) {
@@ -44,7 +44,7 @@ public class StudentController {
 	  }
 	  
 	  @PostMapping("/students")
-	  public ResponseEntity<Student> createTutorial(@RequestBody Student std) {
+	  public ResponseEntity<Student> createStudent(@RequestBody Student std) {
 	    try {
 	      Student newStudent = studentRepo.save(new Student(std.getAge(),std.getName()));
 	      return new ResponseEntity<>(newStudent, HttpStatus.CREATED);
@@ -54,7 +54,7 @@ public class StudentController {
 	  }
 	  
 	  @PutMapping("/studets/{id}")
-	  public ResponseEntity<Student> updateTutorial(@PathVariable("id") Integer id, @RequestBody Student std) {
+	  public ResponseEntity<Student> updateStudent(@PathVariable("id") Integer id, @RequestBody Student std) {
 	    Optional<Student> studentData = studentRepo.findById(id);
 
 	    if (studentData.isPresent()) {
@@ -68,7 +68,7 @@ public class StudentController {
 	  }
 
 	  @DeleteMapping("/students/{id}")
-	  public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") Integer id) {
+	  public ResponseEntity<HttpStatus> deleteStudent(@PathVariable("id") Integer id) {
 	    try {
 	      studentRepo.deleteById(id);
 	      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -78,7 +78,7 @@ public class StudentController {
 	  }
 
 	  @DeleteMapping("/students")
-	  public ResponseEntity<HttpStatus> deleteAllTutorials() {
+	  public ResponseEntity<HttpStatus> deleteAllStudents() {
 	    try {
 	      studentRepo.deleteAll();
 	      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
